@@ -11,3 +11,101 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.main-container{
+  width: 100vw;
+  min-height: 100vh;
+  background-image: radial-gradient(#32a0a8,#3242a8,#9532a8);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+}
+.form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #232224;
+  margin-top: 30px;
+  min-width: 300px;
+}
+.form label{
+  margin: 20px;
+  word-spacing: 2px;
+}
+.form input{
+  margin: 20px;
+  width: 150px;
+  border: none;
+  border-bottom: black 2px solid;
+  background-color: transparent;
+  outline: none;
+  font-size: 20px;
+  text-align: center;
+}
+button{
+  border: 1px solid #32d1e3;
+  padding: 15px 25px;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: #32d1e3;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 20px;
+}
+.result-container{
+  display: flex;
+  align-items: center;
+}
+hr{
+  padding: 1px;
+  width: 100%;
+  border: none;
+  background-image: linear-gradient(to right,#32a0a8,#3242a8,#9532a8);
+}
+.capital-field{
+  color: #32a0a8;
+  font-weight: 700;
+}
+.risk-rate-field{
+  color: #b80b14;
+  font-weight: 700;
+}
+.entry-field{
+  color: green;
+  font-weight: 700;
+}
+.stop-loss-field{
+  color: #b80b14;
+  font-weight: 700;
+}
+.leverage-field{
+  color: orange;
+  font-weight: 700;
+}
+.quantity-field{
+  cursor: pointer;
+}
+.buttons-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width: 500px) {
+  .form div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .form label{
+    margin: 0;
+  }
+}
