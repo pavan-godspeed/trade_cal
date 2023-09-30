@@ -92,7 +92,7 @@ class App extends Component{
       </div>
       <hr/>
       <div>
-        <label htmlFor='leverage'>CAPITAL AMOUNT IN RUPEES:</label>
+        <label htmlFor='leverage'>LEVERAGE PERCENTAGE:</label>
         <input onChange={this.onLeverage} value={leveragePercentage} type='number' id='leverage' className='leverage-field' />
       </div>
     </div>
