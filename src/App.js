@@ -87,7 +87,7 @@ class App extends Component{
       </div>
       <hr/>
       <div>
-        <label htmlFor='stop_loss'>STOP LOSS PRICE IN RUPEES:</label>
+        <label htmlFor='stop_loss'>STOP-LOSS PRICE IN RUPEES:</label>
         <input onChange={this.onStopLoss} value={stopLossPrice} type='number' id='stop_loss' className='stop-loss-field' />
       </div>
       <hr/>
@@ -109,7 +109,7 @@ class App extends Component{
         </div>
         <hr/>
         <div className='result-container'>
-          <label htmlFor='trade_loss'>TRADE LOSS :</label>
+          <label htmlFor='trade_loss'>LOSS PER TRADE:</label>
           <h2 className='risk-rate-field' id='trade_loss'>{entryPrice - stopLossPrice}</h2>
         </div>
         <hr/>
@@ -121,6 +121,11 @@ class App extends Component{
         <div className='result-container'>
           <label htmlFor='investment'>INVESTMENT :</label>
           <h2 className='leverage-field' id='investment'>{(entryPrice * (quantity === '' ? ((capitalAmount * (riskRatePercentage/100)) / (entryPrice - stopLossPrice)) : quantity)) * (leveragePercentage/100)}</h2>
+        </div>
+        <hr/>
+        <div className='result-container'>
+          <label htmlFor='trade_loss'>TOTAL LOSS:</label>
+          <h2 className='risk-rate-field' id='trade_loss'>{(entryPrice - stopLossPrice)*(quantity === '' ? ((capitalAmount * (riskRatePercentage/100)) / (entryPrice - stopLossPrice)) : quantity)}</h2>
         </div>
       </div>
     )
