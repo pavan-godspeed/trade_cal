@@ -100,32 +100,41 @@ class App extends Component{
 
   outputComponent = () => {
     const {capitalAmount,riskRatePercentage, entryPrice, leveragePercentage, stopLossPrice, quantity, quantityClicked} = this.state
+    const risk = capitalAmount * (riskRatePercentage/100);
+    const lossPerTrade = entryPrice - stopLossPrice;
+    let invest = entryPrice * (quantity === '' ? ((capitalAmount * (riskRatePercentage/100)) / (entryPrice - stopLossPrice)) : quantity) * (leveragePercentage/100);
+    let quan = quantity === '' ? ((capitalAmount * (riskRatePercentage/100)) / (entryPrice - stopLossPrice)) : quantity;
+    if(parseInt(invest) > capitalAmount){
+      invest = capitalAmount;
+      quan = invest / (entryPrice * (leveragePercentage / 100));
+    }
+    const totalLoss = quan * lossPerTrade;
     
     return(
       <div className='form'>
         <div className='result-container'>
           <label htmlFor='risk'>RISK :</label>
-          <h2 className='risk-rate-field' id='risk'>{capitalAmount * (riskRatePercentage/100)}</h2>
+          <h2 className='risk-rate-field' id='risk'>{risk}</h2>
         </div>
         <hr/>
         <div className='result-container'>
           <label htmlFor='trade_loss'>LOSS PER TRADE:</label>
-          <h2 className='risk-rate-field' id='trade_loss'>{entryPrice - stopLossPrice}</h2>
+          <h2 className='risk-rate-field' id='trade_loss'>{lossPerTrade}</h2>
         </div>
         <hr/>
         <div className='result-container'>
           <label htmlFor='quantity'>QUANTITY :</label>
-          {!quantityClicked? <h2 onClick={this.onQuantityClick} className='leverage-field quantity-field' id='quantity'>{quantity === '' ? ((capitalAmount * (riskRatePercentage/100)) / (entryPrice - stopLossPrice)) : quantity}</h2> : <input className= "leverage-field" value={quantity} type='number' onChange={this.onQuantity} />}
+          {!quantityClicked? <h2 onClick={this.onQuantityClick} className='leverage-field quantity-field' id='quantity'>{(quan)}</h2> : <input className= "leverage-field" value={quantity} type='number' onChange={this.onQuantity} />}
         </div>
         <hr/>
         <div className='result-container'>
           <label htmlFor='investment'>INVESTMENT :</label>
-          <h2 className='leverage-field' id='investment'>{(entryPrice * (quantity === '' ? ((capitalAmount * (riskRatePercentage/100)) / (entryPrice - stopLossPrice)) : quantity)) * (leveragePercentage/100)}</h2>
+          <h2 className='leverage-field' id='investment'>{(invest)}</h2>
         </div>
         <hr/>
         <div className='result-container'>
           <label htmlFor='trade_loss'>TOTAL LOSS:</label>
-          <h2 className='risk-rate-field' id='trade_loss'>{(entryPrice - stopLossPrice)*(quantity === '' ? ((capitalAmount * (riskRatePercentage/100)) / (entryPrice - stopLossPrice)) : quantity)}</h2>
+          <h2 className='risk-rate-field' id='trade_loss'>{totalLoss}</h2>
         </div>
       </div>
     )
